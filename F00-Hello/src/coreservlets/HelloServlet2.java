@@ -28,4 +28,5 @@ public class HelloServlet2 extends HttpServlet {
                 "<H1>Hello (2)</H1>\n" +
                 "</BODY></HTML>");
   }
+  
 }
