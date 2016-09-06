@@ -15,8 +15,6 @@ public class Regnom {
 		case "1":
 			
 			
-			
-			
 			Res =(formater.format(Double.parseDouble(tempInndata))) +  " \u00b0  C = "+formater.format((temp * (9./5.))+32 ) +"\u00b0 F";
 			break;
 		case "2":
