@@ -5,19 +5,21 @@ import java.text.NumberFormat;
 
 public class Regnom {
 
-	public static String regn(String amount, Double rate) {
+	public static String regn(String amount, Double rate, String source, String target) {
 		NumberFormat formater = new DecimalFormat("#0.0");
-		double resultat=Double.parseDouble(amount) * rate ;
-		return formater.format(resultat)+"";
+		double veksletBelop=Double.parseDouble(amount) * rate ;
+
+		
+		return ""+formater.format(Double.parseDouble(amount)) + " "+ source +" blir "+ formater.format(veksletBelop) +" "+ target;
 
 	}
-
+	
 
 
 	public static boolean validate(String amount){
 		boolean sant=true;
 		
-		sant= (amount.matches("^-?\\d+\\.*\\d*$"))?true:false;
+		sant= (amount.matches("^-?\\d+\\.?\\d*$"))?true:false;
 			
 		
 		//		 try {

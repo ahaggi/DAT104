@@ -1,6 +1,5 @@
 package no.hib.dat104;
 
-import java.io.IOException;
 
 /**
      {"success":true,

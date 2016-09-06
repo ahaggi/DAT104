@@ -1,6 +1,5 @@
 package coreservlets;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
 
 /** Some simple time savers. Note that most are static methods.

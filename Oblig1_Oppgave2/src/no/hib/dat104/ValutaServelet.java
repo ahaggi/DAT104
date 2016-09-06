@@ -3,8 +3,6 @@ package no.hib.dat104;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.bval.Validate;
 
 /**
  * Servlet implementation class ValutaServelet
@@ -38,7 +35,7 @@ public class ValutaServelet extends HttpServlet {
 
         String source = request.getParameter("source");
         String target = request.getParameter("target");
-        String amount = request.getParameter("amount");
+        String amount = request.getParameter("amount").replaceAll(",", ".");
         
         
 //        {"success":true,
@@ -53,10 +50,9 @@ public class ValutaServelet extends HttpServlet {
 
 		if (Regnom.validate(amount) ){
 //	        ExchangeRate exchangeRateResultat= ExchangeRateService.getRate(source, target);
-			String resultatBelop=Regnom.regn(amount,1.4);
-			resMelding= amount + " "+ source +" blir "+ resultatBelop +" "+ target;
+			resMelding= Regnom.regn(amount,1.4, source, target )  ;
 		}else{
-			resMelding="FeilFeilFeilFeilFeil";
+			resMelding="Feil!";
 		}
 		
 		
@@ -80,12 +76,6 @@ public class ValutaServelet extends HttpServlet {
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+
 
 }

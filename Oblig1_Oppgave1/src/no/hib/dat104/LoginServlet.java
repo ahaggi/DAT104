@@ -17,8 +17,8 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         
-        String fornavn = request.getParameter("fornavn");
-        String etternavn = request.getParameter("etternavn");
+        String fornavn = escapeHtml(request.getParameter("fornavn"));
+        String etternavn = escapeHtml(request.getParameter("etternavn"));
         
         //System.out.println(fornavn + " " + etternavn);
         
@@ -43,4 +43,13 @@ public class LoginServlet extends HttpServlet {
         
     }
 
+	private String escapeHtml(String str) {
+		str = str.replaceAll("<","&lt;"); 
+		str = str.replaceAll(">","&gt;");
+		str = str.replaceAll("'","&#39;");
+		str = str.replaceAll("\"","&#34;");
+		str = str.replaceAll("=","&#61;");
+		str = str.replaceAll("/","&#47;");
+  		return str;
+	}
 }

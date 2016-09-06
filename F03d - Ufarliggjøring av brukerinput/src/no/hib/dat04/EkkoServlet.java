@@ -42,8 +42,11 @@ public class EkkoServlet extends HttpServlet {
 	private String escapeHtml(String str) {
 		str = str.replaceAll("<","&lt;"); 
 		str = str.replaceAll(">","&gt;");
-		//osv ...
-		return str;
+		str = str.replaceAll("'","&#39;");
+		str = str.replaceAll("\"","&#34;");
+		str = str.replaceAll("=","&#61;");
+		str = str.replaceAll("/","&#47;");
+  		return str;
 	}
 
 }
