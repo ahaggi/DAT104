@@ -47,7 +47,7 @@ public class Regnom {
 	public static boolean validate(String tempInndata, String valg){
 		boolean sant=false;
 		
-		if (tempInndata.matches("^-?\\d+\\.?\\d*$")) {
+		if (tempInndata.matches("^-?\\d+\\.?\\d*$") ) {
 			if (valg.equals("1") && (Double.parseDouble(tempInndata)>= -273.15)) {
 				sant=true;
 			}else if (valg.equals("2") && Double.parseDouble(tempInndata)>= -459.67) {
