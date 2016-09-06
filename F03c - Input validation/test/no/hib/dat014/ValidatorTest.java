@@ -9,8 +9,6 @@ import no.hib.dat04.ValidatorRegExp;
 
 public class ValidatorTest {
 	
-//	private ValidatorSimple validator = new ValidatorSimple();
-//	private ValidatorBetter validator = new ValidatorBetter();
 	private ValidatorRegExp validator = new ValidatorRegExp();
 	
 	@Test

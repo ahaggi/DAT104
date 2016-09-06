@@ -1,3 +1,4 @@
+package no.hib.dat104;
 
 
 import java.io.IOException;
@@ -44,9 +45,10 @@ public class CelsiusTilFahrenheitServelt extends HttpServlet {
 		String res="";
 		
 		if (Regnom.validate(tempInndata, valg)){
-			 res=Regnom.regn(tempInndata, valg);
+			double tempRes= Regnom.regn(tempInndata, valg);
+			 res="<h3> "+ Regnom.Formater(tempInndata, valg, tempRes) +"</h3>";
 		}else{
-			res="Feil!";
+			res="<h3 style=\"color:red\">Ugyldig brukerinput. Temperaturen må være et tall (lik eller over det absolutte nullpunkt). Pass også på at du har valgt en av omregningene før du trykker \"Regn om\"</h3>";
 		}
 		
 		
@@ -60,8 +62,8 @@ public class CelsiusTilFahrenheitServelt extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h1>Tempraturen omregning resulatat</h1>");
-		out.println("<h3> "+res+"</h3>");
-		out.println("<p>Info om serveren: " + serverinfo + ".</p>");
+		out.println(res);
+		out.println("<p >Info om serveren: " + serverinfo + ".</p>");
 		out.println("<a href=\"index.html\">En gang til</a>");
 		out.println("</body>");
 		out.println("</html>");
