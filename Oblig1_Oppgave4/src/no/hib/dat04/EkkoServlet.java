@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 @WebServlet("/ekko")
 public class EkkoServlet extends HttpServlet {
 
@@ -20,8 +22,13 @@ public class EkkoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String brukerinput = req.getParameter("fritekst");
+		String valg = req.getParameter("valg");
 		
-		brukerinput = escapeHtml(brukerinput);
+		if (valg.equals("1")) {
+			brukerinput =StringEscapeUtils.escapeHtml4(brukerinput);
+		}else if (valg.equals("2")) {
+			brukerinput = escapeHtml(brukerinput);
+		}
 		
         resp.setContentType("text/html; charset=ISO-8859-1");
 

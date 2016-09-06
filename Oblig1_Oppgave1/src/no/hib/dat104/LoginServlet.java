@@ -3,11 +3,9 @@ package no.hib.dat104;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
 @WebServlet("/register")
 public class LoginServlet extends HttpServlet {
@@ -20,7 +18,6 @@ public class LoginServlet extends HttpServlet {
         String fornavn = escapeHtml(request.getParameter("fornavn"));
         String etternavn = escapeHtml(request.getParameter("etternavn"));
         
-        //System.out.println(fornavn + " " + etternavn);
         
         response.setContentType("text/html; charset=ISO-8859-1");
 
