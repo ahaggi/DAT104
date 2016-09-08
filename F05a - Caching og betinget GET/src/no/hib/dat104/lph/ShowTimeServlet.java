@@ -30,7 +30,7 @@ public class ShowTimeServlet extends HttpServlet {
     	//Thread safe?
         lastModifiedMillis = (new Date()).getTime()/1000*1000;
         
-        response.sendRedirect("showtime");;
+        response.sendRedirect("showtime");
     }
 
     @Override

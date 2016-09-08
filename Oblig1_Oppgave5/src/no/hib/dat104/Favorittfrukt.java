@@ -1,16 +1,10 @@
 package no.hib.dat104;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
+import java.io.*;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.collections.collection.SynchronizedCollection;
-import org.apache.commons.lang3.StringEscapeUtils;
+import javax.servlet.http.*;
 
 /**
  * Servlet implementation class Favorittfrukt
@@ -18,45 +12,35 @@ import org.apache.commons.lang3.StringEscapeUtils;
 @WebServlet(name = "stemme", urlPatterns = { "/stemme" })
 public class Favorittfrukt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	
-	int eple=0;
-	int	pare=0;
-	int	kiwi=0;
-	int	banan = 0;
+	static HashMap<String, Integer> fruktMap=Stemmeskjema.fruktMap;
+
+
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String valg = request.getParameter("valg");
+		
+		synchronized (valg) {
+			Integer i=fruktMap.get(valg)+1;
+			fruktMap.put(valg, i);
+		}
+		
+		response.sendRedirect("stemme");
+	}
+
+
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String valg = request.getParameter("valg");
-
-		
-		synchronized (valg) {
-			switch (valg) {
-			case "Eple":
-				eple++;
-				break;
-			case "Pare":
-				pare++;
-				break;
-			case "Kiwi":
-				kiwi++;
-				break;
-			case "Banan":
-				banan++;
-				break;
-
-			default:
-				break;
-			}
-
-		}
 		response.setContentType("text/html; charset=ISO-8859-1");
 
 		PrintWriter out = response.getWriter();
-
+		
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
@@ -65,15 +49,17 @@ public class Favorittfrukt extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h1>Favorittfrukt resultat</h1>");
+		
+		for (String fruktnavn:fruktMap.keySet()) {
+			out.println("<p>"+ fruktnavn +": " +fruktMap.get(fruktnavn)  +"</p>");
 
-		out.println("<p>Eple:" + eple +"</p>");
-		out.println("<p>Pære:" + pare +"</p>");
-		out.println("<p>Kiwi:" + kiwi  +"</p>");
-		out.println("<p>Banan:" +  banan +"</p>");
+ 		}
+		out.println("<a href=\"stemmeskjema\">Stem en gang til</a>");
 		out.println("</body>");
 		out.println("</html>");
 
 
 	}
-
+	
+	
 }
