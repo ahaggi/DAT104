@@ -74,7 +74,7 @@ public class Stemmeskjema extends HttpServlet {
 		out.println("<meta charset=\"ISO-8859-1\">");
 		out.println("<title>Frukt</title>");
 		out.println("</head>");
-		out.println("<bodyonload=\"check()\">");
+		out.println("<body onload=\"check()\">");
 		out.println("<form action=\"stemme\" method=\"post\">");
 		out.println("<fieldset>");
 		out.println("<legend>Favorittfrukt</legend>");
