@@ -73,6 +73,7 @@ public class Stemmeskjema extends HttpServlet {
 		out.println("<head>");
 		out.println("<meta charset=\"ISO-8859-1\">");
 		out.println("<title>Frukt</title>");
+		out.println("<script type=\"text/javascript\" src=\"js.js\" ></script>");
 		out.println("</head>");
 		out.println("<body onload=\"check()\">");
 		out.println("<form action=\"stemme\" method=\"post\">");
@@ -89,7 +90,6 @@ public class Stemmeskjema extends HttpServlet {
 		out.println("</fieldset>");
 		out.println("</form>");
 
-		out.println(" <script>	function check() {	var radios = document.getElementsByName('valg'); var flag=0; for (var i = 0; i < radios.length && flag==0; i++) {if (radios[i].checked)	 flag=1;}document.getElementById('stem').disabled=(flag==0)?true:false;}</script>");
 		out.println("</body>");
 		out.println("</html>");
 
