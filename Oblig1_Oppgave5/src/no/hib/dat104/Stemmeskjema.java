@@ -79,11 +79,11 @@ public class Stemmeskjema extends HttpServlet {
 		out.println("<form action=\"stemme\" method=\"post\">");
 		out.println("<fieldset>");
 		out.println("<legend>Favorittfrukt</legend>");
+
 		out.println("<p>");
 		for (String fruktnavn:fruktMap.keySet()) {
 			out.println(" <input type=\"radio\" name=\"valg\" value=\"" + fruktnavn +  "\"  onclick=\"check()\"/>"+fruktnavn +"<br>");
  		}
-
 		out.println("</p>");
 		
 		out.println("<input type=\"submit\" value=\"stem\" id='stem'  disabled=\"disabled\"/>");
