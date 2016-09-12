@@ -6,6 +6,9 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.gson.JsonSyntaxException;
+
+
 public class TestKlasse {
 	String source ;
     String target;
@@ -44,8 +47,16 @@ public class TestKlasse {
 	}
 	@Test
 	public void testRegnom3() throws IOException {
-        ExchangeRate exchangeRateResultat= ExchangeRateService.getRate(source, ugyldigValuta);
-        double rate = exchangeRateResultat.getRate();
+        ExchangeRate exchangeRateResultat;
+        double rate=0;
+		try {
+			exchangeRateResultat = ExchangeRateService.getRate("Uxx", "EUR");
+	         rate = exchangeRateResultat.getRate();
+		} catch (JsonSyntaxException e) {
+			 rate=0;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		assertEquals( 0 , rate , 0.01 );
 		
 	}

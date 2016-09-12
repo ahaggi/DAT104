@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonSyntaxException;
+
+
 
 /**
  * Servlet implementation class ValutaServelet
@@ -51,8 +54,17 @@ public class ValutaServelet extends HttpServlet {
 		String resMelding="";
 
 		if (Regnom.validate(amount) ){
-	        ExchangeRate exchangeRateResultat= ExchangeRateService.getRate(source, target);
-	        double rate = exchangeRateResultat.getRate();
+	        ExchangeRate exchangeRateResultat;
+	        double rate=0;
+			try {
+				exchangeRateResultat = ExchangeRateService.getRate("USD", "EUR");
+		         rate = exchangeRateResultat.getRate();
+			} catch (JsonSyntaxException e) {
+				 rate=0;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			double veksletBelop= Regnom.regn(amount,rate, source, target )  ;
 
 			NumberFormat formater = new DecimalFormat("#0.00");

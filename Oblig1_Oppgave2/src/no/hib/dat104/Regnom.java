@@ -1,8 +1,5 @@
 package no.hib.dat104;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
 
 public class Regnom {
 
