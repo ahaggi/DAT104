@@ -41,7 +41,7 @@ public class EkkoServlet extends HttpServlet {
         out.println("<title>Ekko</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<p>" + brukerinput +"</p>");
+        out.println("<p> Hello" +  brukerinput +"</p>");
         out.println("</body>");
         out.println("</html>");
         
