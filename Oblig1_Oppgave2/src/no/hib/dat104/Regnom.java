@@ -3,14 +3,12 @@ package no.hib.dat104;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+
 public class Regnom {
 
-	public static String regn(String amount, Double rate, String source, String target) {
-		NumberFormat formater = new DecimalFormat("#0.0");
+	public static double regn(String amount, Double rate, String source, String target) {
 		double veksletBelop=Double.parseDouble(amount) * rate ;
-
-		
-		return ""+formater.format(Double.parseDouble(amount)) + " "+ source +" blir "+ formater.format(veksletBelop) +" "+ target;
+		return (veksletBelop) ;
 
 	}
 	
@@ -21,14 +19,8 @@ public class Regnom {
 		
 		sant= (amount.matches("^-?\\d+\\.?\\d*$"))?true:false;
 			
-		
-		//		 try {
-		//	            Double.parseDouble(tempInndata);
-		//	            return true;
-		//	        } catch (NumberFormatException e) {
-		//	            return false;
-	//	        }
-	return sant;
+		return sant;
 	}
+	
 	
 }

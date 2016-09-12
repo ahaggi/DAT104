@@ -34,7 +34,6 @@ public class ExchangeRateService {
         Reader apiReader = new InputStreamReader(googleCcApiUrl.openStream());
 
         Gson gson = new Gson();
-        return gson.fromJson(apiReader, ExchangeRate.class);
-    }
+        return gson.fromJson(apiReader, ExchangeRate.class);}
 
 }

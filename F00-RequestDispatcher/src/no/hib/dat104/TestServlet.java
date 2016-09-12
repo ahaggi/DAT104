@@ -24,8 +24,7 @@ public class TestServlet extends javax.servlet.http.HttpServlet implements javax
 		performTask(request, response);
 	}
 
-	private void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-			IOException {
+	private void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("TestServlet says hi<br/>");
