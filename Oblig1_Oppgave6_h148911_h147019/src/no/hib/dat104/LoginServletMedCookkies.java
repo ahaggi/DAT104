@@ -2,6 +2,8 @@ package no.hib.dat104;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,15 +24,19 @@ public class LoginServletMedCookkies extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		/** 
+		  * En cookie (gjelder både navn og verdi) kan ikke innholde blanke eller tegnene [ ] ( ) = , " / ? @ : ;
+		  * En cookie kan heller ikke inneholde ikke-engelske bokstaver ,f.eks. æøå.
+		  * Vi må derfor encode/decode cookie-verdier ved sending og mottak.
+		  * */
 
         String fornavn="";
         String etternavn="";
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                    fornavn = cookie.getName();
-                    etternavn = cookie.getValue();
+                    fornavn = URLDecoder.decode(cookie.getName(), "ISO-8859-1");
+                    etternavn = URLDecoder.decode(cookie.getValue(), "ISO-8859-1");
             }
         }
 
@@ -73,9 +79,13 @@ public class LoginServletMedCookkies extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String fornavn = escapeHtml(request.getParameter("fornavn"));
-		String etternavn = escapeHtml(request.getParameter("etternavn"));
+ /** 
+  * En cookie (gjelder både navn og verdi) kan ikke innholde blanke eller tegnene [ ] ( ) = , " / ? @ : ;
+  * En cookie kan heller ikke inneholde ikke-engelske bokstaver ,f.eks. æøå.
+  * Vi må derfor encode/decode cookie-verdier ved sending og mottak.
+  * */
+		String fornavn = URLEncoder.encode(request.getParameter("fornavn"), "ISO-8859-1");
+		String etternavn = URLEncoder.encode(request.getParameter("etternavn"), "ISO-8859-1");
 
 	        Cookie nycookie = new Cookie(fornavn, etternavn);
 	        nycookie.setMaxAge(60 * 60 * 24 * 365);
@@ -85,25 +95,6 @@ public class LoginServletMedCookkies extends HttpServlet {
 
 	
 	
-	}
-	private String escapeHtml(String str) {
-		str = str.replaceAll("<",""); 
-		str = str.replaceAll(" ",""); 
-		str = str.replaceAll(">","");
-		str = str.replaceAll("'","");
-		str = str.replaceAll("\"","");
-		str = str.replaceAll("=","");
-		str = str.replaceAll("/","");
-		str = str.replaceAll("å","&#229");
-		str = str.replaceAll("Å","&#197");
-		str = str.replaceAll("ø","&#248");
-		str = str.replaceAll("Ø","&#216");
-		str = str.replaceAll("æ","&#230");
-		str = str.replaceAll("Æ","&#198");
-		   
-		   
-		   
-  		return str;
 	}
 
 }
