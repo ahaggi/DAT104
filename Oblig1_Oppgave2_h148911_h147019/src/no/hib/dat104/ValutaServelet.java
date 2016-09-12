@@ -71,7 +71,7 @@ public class ValutaServelet extends HttpServlet {
 	        resMelding= ""+formater.format(Double.parseDouble(amount)) + " "+ source +" blir "+ formater.format(veksletBelop) +" "+ target +" ,vekslingskurs: " +rate;
 			
 		}else{
-			resMelding="Feil!";
+			resMelding="Feil!  inndata er ikke et tall";
 		}		
 		response.setContentType("text/html; charset=ISO-8859-1");
 		PrintWriter out = response.getWriter();
