@@ -1,5 +1,6 @@
 package no.hib.dat104;
 
+import static no.hib.dat104.UrlMappings.*;
 import java.io.*;
 import java.util.*;
 import javax.servlet.ServletException;
@@ -9,7 +10,7 @@ import javax.servlet.http.*;
 /**
  * Servlet implementation class Favorittfrukt
  */
-@WebServlet(name = "stemme", urlPatterns = { "/stemme" })
+@WebServlet(name = "/"+FAVORITTFRUKT_SERVLET)
 public class Favorittfrukt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,7 +27,7 @@ public class Favorittfrukt extends HttpServlet {
 			fruktMap.put(valg, i);
 		}
 		
-		response.sendRedirect("stemme");
+		response.sendRedirect(FAVORITTFRUKT_SERVLET);
 	}
 
 
@@ -54,7 +55,7 @@ public class Favorittfrukt extends HttpServlet {
 			out.println("<p>"+ fruktnavn +": " +fruktMap.get(fruktnavn)  +"</p>");
 
  		}
-		out.println("<a href=\"stemmeskjema\">Stem en gang til</a>");
+		out.println("<a href=\""+STEMMESKJEMA_SERVLET+"\">Stem en gang til</a>");
 		out.println("</body>");
 		out.println("</html>");
 

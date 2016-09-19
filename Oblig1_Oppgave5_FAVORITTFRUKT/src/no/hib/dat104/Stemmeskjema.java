@@ -1,5 +1,6 @@
 package no.hib.dat104;
 
+import static no.hib.dat104.UrlMappings.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Stemmeskjema
  */
-@WebServlet("/stemmeskjema")
+@WebServlet("/"+STEMMESKJEMA_SERVLET)
 public class Stemmeskjema extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -76,7 +77,7 @@ public class Stemmeskjema extends HttpServlet {
 		out.println("<script type=\"text/javascript\" src=\"js.js\" ></script>");
 		out.println("</head>");
 		out.println("<body onload=\"check()\">");
-		out.println("<form action=\"stemme\" method=\"post\">");
+		out.println("<form action=\""+FAVORITTFRUKT_SERVLET+"\" method=\"post\">");
 		out.println("<fieldset>");
 		out.println("<legend>Favorittfrukt</legend>");
 

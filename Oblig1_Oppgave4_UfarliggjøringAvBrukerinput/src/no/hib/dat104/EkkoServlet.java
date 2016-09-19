@@ -1,5 +1,6 @@
-package no.hib.dat04;
+package no.hib.dat104;
 
+import static no.hib.dat104.UrlMappings.EKKO_SERVLET;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
-@WebServlet("/ekko")
+@WebServlet("/"+EKKO_SERVLET)
 public class EkkoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,7 @@
 package no.hib.dat104;
 
 
+import static no.hib.dat104.UrlMappings.TEMPRATUR_SERVLET_URL;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class HilseServlet
  */
-@WebServlet("/Tempo")
+@WebServlet("/"+TEMPRATUR_SERVLET_URL)
 public class CelsiusTilFahrenheitServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

@@ -1,7 +1,10 @@
 package no.hib.dat104;
 
+import static no.hib.dat104.UrlMappings.LOGIN_URL;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login")
+@WebServlet("/" + LOGIN_URL)
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +34,8 @@ public class LoginServlet extends HttpServlet {
         
         String fornavn = escapeHtml(request.getParameter("fornavn"));
         String etternavn = escapeHtml(request.getParameter("etternavn"));
-        
+		String[] lang= request.getParameterValues("language");
+
         
         response.setContentType("text/html; charset=ISO-8859-1");
 
@@ -49,6 +53,8 @@ public class LoginServlet extends HttpServlet {
         out.println("<h3>Logged in form "+request.getRequestURL()+"</h3> <br>");
         out.println("<p>Username " + fornavn  +"</p> <br>");
         out.println("<p>Username " + etternavn  +"</p>");
+	    out.println("  language = " + Arrays.toString(lang));
+
         out.println("</body>");
         out.println("</html>");
         

@@ -1,6 +1,7 @@
 package no.hib.dat104;
 
 
+import static no.hib.dat104.UrlMappings.VALUTASERVLET_URL;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
@@ -19,7 +20,7 @@ import com.google.gson.JsonSyntaxException;
 /**
  * Servlet implementation class ValutaServelet
  */
-@WebServlet("/result")
+@WebServlet("/"+VALUTASERVLET_URL)
 public class ValutaServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
