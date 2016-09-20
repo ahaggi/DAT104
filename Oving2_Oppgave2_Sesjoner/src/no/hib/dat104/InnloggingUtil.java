@@ -9,6 +9,13 @@ public class InnloggingUtil {
 		return brukernavn != null && brukernavn.equals("admin");
 	}
 
+	public static void loggInnSom(HttpServletRequest request, String brukernavn) {
+
+		loggUt(request);
+		HttpSession sesjon = request.getSession(true);
+		sesjon.setAttribute("innloggetBruker", brukernavn);
+	}
+
 	public static boolean isInnlogget(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession(false);
@@ -22,12 +29,6 @@ public class InnloggingUtil {
 		return isInnlogget(request) ?	(String) session.getAttribute("innloggetBruker") : null;
 	}
 
-	public static void loggInnSom(HttpServletRequest request, String brukernavn) {
-
-		loggUt(request);
-		HttpSession sesjon = request.getSession(true);
-		sesjon.setAttribute("innloggetBruker", brukernavn);
-	}
 
 	public static void loggUt(HttpServletRequest request) {
 

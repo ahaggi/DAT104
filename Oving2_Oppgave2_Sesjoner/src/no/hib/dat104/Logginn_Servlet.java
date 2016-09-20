@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 
 /**
  * Servlet implementation class Loginn_Servlet
@@ -72,7 +74,7 @@ public class Logginn_Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String brukernavn = request.getParameter("brukernavn");
+		String brukernavn = StringEscapeUtils.escapeHtml4(  request.getParameter("brukernavn")  );
 
         if (!InnloggingUtil.isGyldigBrukernavn(brukernavn)) {
             response.sendRedirect(LOGGIN_URL + "?requiresLogin=101");
