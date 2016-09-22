@@ -6,6 +6,6 @@
 		jdbcDriver = org.postgresql.Driver
 		jdbcUrl = jdbc:postgresql://localhost:5432/DAT104
 		userName = h147019
-		password = 2619
+		password = 0000
 	</Resource>
 </resources>

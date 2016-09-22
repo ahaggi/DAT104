@@ -59,7 +59,7 @@ public class Logginn_Servlet extends HttpServlet {
         out.println("<form action=\"" + LOGGIN_URL + "\" method=\"post\">");
         out.println("  <fieldset>");
         out.println("    <legend>Loggin</legend>");
-        out.println("    <p>Navn: <input type=\"text\" name=\"brukernavn\" /></p>");
+        out.println("    <p>Navn: <input type=\"text\" name=\"brukernavn\"  required/></p>");
         out.println("    <p><input type=\"submit\" value=\"Logg inn\" /></p>");
         out.println("  </fieldset>");
         out.println("</form>");
