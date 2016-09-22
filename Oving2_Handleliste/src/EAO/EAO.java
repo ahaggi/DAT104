@@ -19,7 +19,7 @@ public class EAO {
 	private EntityManager em;
 	
 	public void leggTilItem(Item i) {
-		em.persist(i);
+		em.persist(i); 
 	}
 	
 	
