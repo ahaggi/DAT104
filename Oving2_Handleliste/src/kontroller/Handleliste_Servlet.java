@@ -84,7 +84,7 @@ public class Handleliste_Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Cart cart = EAO.alleItems();
+		Cart cart = EAO.alleItems() ;
 		
 		boolean leggTil = "leggTil".equals(request.getParameter("handelse"));
 		boolean slett = "slett".equals(request.getParameter("handelse"));
