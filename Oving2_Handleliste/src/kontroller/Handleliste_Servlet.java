@@ -88,7 +88,7 @@ public class Handleliste_Servlet extends HttpServlet {
 		
 		boolean leggTil = "leggTil".equals(request.getParameter("handelse"));
 		boolean slett = "slett".equals(request.getParameter("handelse"));
-
+ 
 		if (cart != null) {
 
 			if (leggTil) {
