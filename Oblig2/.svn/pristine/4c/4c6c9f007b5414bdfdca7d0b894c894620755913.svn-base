@@ -1,0 +1,78 @@
+/*
+* Working on this, but i can't create a servlet on my home computer on SVN.
+* This needs to be pasted into a servlet once on my laptop.
+* This is PersonerServlet, som håndtere påmeldinger.
+*/
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringEscapeUtils; //Må fortsatt importere JAR fil.
+
+/**
+ * Servlet implementation class PåmeldingServlet
+ */
+@WebServlet("/påmelding")
+public class PåmeldingServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+    public PåmeldingServlet() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String fornavn = request.getParameter("fornavn");
+        String etternavn = request.getParameter("etternavn");
+        String mobil = request.getParameter("mobil");
+        String kjonn = request.getParameter("kjonn");
+        
+        fornavn = StringEscapeUtils.escapeHtml4(fornavn);
+        etternavn = StringEscapeUtils.escapeHtml4(etternavn);
+        mobil = StringEscapeUtils.escapeHtml4(mobil);
+        
+        //Trenger å lagre dette som person objekt i database.
+        
+        Person person = new Person(fornavn, etternavn, mobil, kjonn);
+        
+        
+        response.setContentType("text/html; charset=ISO-8859-1");
+
+        PrintWriter out = response.getWriter();
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<meta charset=\"ISO-8859-1\">");
+        out.println("<title>Bekreftelse</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Påmeldingsbekreftet</h1> <br>");
+        out.println("<h3>Påmelding mottat for: </h1> <br>");
+        out.println("<p>Fornavn " + fornavn  +"</p>");
+        out.println("<p>Etternavn " + etternavn  +"</p>");
+        out.println("<p>Mobil " + mobil  +"</p>");
+        out.println("<p>" + kjonn  +"</p>");
+        out.println("<p>NB! Husk å betale til kasserer før festen!</p>");
+        out.println("<p><br></p>");
+        
+        //Update the link below to the detlagerliste once made.
+        
+        out.println("<p><a href="deltagerliste.html">Gå til deltagerliste</a></p>");
+        out.println("</body>");
+        out.println("</html>");
+        
+    }
+	}

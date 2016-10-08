@@ -1,0 +1,46 @@
+package Kontroll;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import static modell.UrlMappings.*;
+/**
+ * Servlet implementation class LogginnServlet
+ */
+@WebServlet("/"+LOGGINN_DELTAGERE_SERVLET)
+public class LogginnServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+  
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+		request.getRequestDispatcher(LOGGINN_DELTAGERE_JSP).forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// TODO invalider en session og lag en ny
+
+		String passord= request.getParameter("mobil");
+		
+			
+		if("1".equals(passord)){//hvis den er deltager
+			response.sendRedirect(DELTAGERLISTE_SERVLET);
+		}else{//TODO hvis passord  ikke fins i databasen
+			//TODO generer noen feil melding 
+			response.sendRedirect(LOGGINN_DELTAGERE_SERVLET);
+		}
+	}
+
+}

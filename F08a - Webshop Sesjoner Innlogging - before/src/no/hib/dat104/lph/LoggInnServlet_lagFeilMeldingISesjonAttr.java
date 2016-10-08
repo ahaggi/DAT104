@@ -3,10 +3,7 @@ package no.hib.dat104.lph;
 import static no.hib.dat104.lph.UrlMappings.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,6 +36,7 @@ public class LoggInnServlet_lagFeilMeldingISesjonAttr extends HttpServlet {
 		HttpSession sesion = request.getSession(true);
 		String feilMelding = (String) sesion.getAttribute("feilmelding");
 		feilMelding=(feilMelding==null)?"":feilMelding;
+		
 		sesion.removeAttribute("feilmelding");//så den ikke henger 
 		
 //		 out.println("<h3 style=color:red> "+ feilMelding+"</h3>");

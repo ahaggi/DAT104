@@ -1,0 +1,25 @@
+package test;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import modell.PersonSkjema;
+
+
+ 
+public class TestKlasse {
+
+    @Before
+	public final void setup() throws Exception {
+//    	PersonSkjema ps = new PersonSkjema();
+    }
+
+	
+	@Test
+	public void testvalidator() {
+		
+	}
+
+}

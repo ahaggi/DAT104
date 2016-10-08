@@ -1,0 +1,51 @@
+package Kontroll;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import  modell.*;
+import static modell.UrlMappings.*;
+/**
+ * Servlet implementation class LogginnServlet
+ */
+@WebServlet("/"+PAAMELDING_SERVLET)
+public class PaameeldingServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher(PAAMELDINGS_JSP).forward(request, response);
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+// 		boolean tull= request.getParameter("fornavn") != "" && request.getParameter("etternavn") != "" && request.getParameter("mobil") != "" &&  request.getParameter("kjonn")!= "";
+ 		
+    	HttpSession session = request.getSession();
+    	// TODO invalider session og lag en ny 
+    	PersonSkjema ps = new PersonSkjema(request);
+     	
+        if (ps.erAllInputGyldig()) {
+        	session.removeAttribute("ps");
+        	
+			request.getRequestDispatcher(PAAMELDINGS_BEKREFTELSE_JSP).forward(request, response);
+		}else{
+        	session.setAttribute("ps", ps);
+			response.sendRedirect(PAAMELDING_SERVLET);
+		}
+	}
+
+}

@@ -30,14 +30,16 @@ public class TestServlet extends javax.servlet.http.HttpServlet implements javax
 		out.println("TestServlet says hi<br/>");
 
 		String action = request.getParameter("action");
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		if (action != null) {
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			if ("include".equalsIgnoreCase(action)) {
 				rd.include(request, response);
 			} else if ("forward".equalsIgnoreCase(action)) {
 				rd.forward(request, response);
 			}
 		}
+		
+		rd.include(request, response);
 
 	}
 

@@ -1,0 +1,48 @@
+package modell;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+public class InnloggingUtil {
+	
+	public static boolean isGyldigBrukernavn(String brukernavn) {
+		return brukernavn != null && brukernavn.equals("admin");
+	}
+
+	public static void loggInnSom(HttpServletRequest request, String brukernavn) {
+
+		loggUt(request);
+		HttpSession sesjon = request.getSession(true);
+		sesjon.setAttribute("innloggetBruker", brukernavn); //her er det lik "kasserer" eller navnet på deltager
+	}
+
+	public static boolean isInnlogget(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession(false);
+		return (session != null)
+				&& (session.getAttribute("innloggetBruker") != null) && (session.getAttribute("innloggetBruker") != null);
+	}
+
+	public static boolean isInnloggetSomKasserer(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession(false);
+		return (session != null) 
+				&& (session.getAttribute("innloggetBruker") != null) && (session.getAttribute("innloggetBruker").equals("kasserer"));
+	}
+
+	public static String harInnloggetSom(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession(false);
+		return isInnlogget(request) ?	(String) session.getAttribute("innloggetBruker") : null;
+	}
+
+
+	public static void loggUt(HttpServletRequest request) {
+
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+	}
+
+}

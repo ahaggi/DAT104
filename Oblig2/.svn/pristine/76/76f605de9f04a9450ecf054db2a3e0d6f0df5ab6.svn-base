@@ -1,0 +1,43 @@
+package EAO;
+
+
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import modell.Personer;
+
+
+@Stateless
+public class EAO {
+	
+	@PersistenceContext(name = "personPersistenceUnit")
+	private EntityManager em;
+	
+	public void leggTilItem(Personer p) {
+		em.persist(p)  ; 
+	}
+	
+	
+	public void slettItem(String mob) {
+		em.remove(em.find(Personer.class, mob));
+	}
+	
+	
+
+	
+	public List<Personer> allePersoner() {
+
+		
+		TypedQuery<Personer> query = em.createQuery("SELECT i FROM Item i", Personer.class);
+		 List<Personer> personer= query.getResultList();          
+
+		 return personer;
+	}
+
+
+
+}

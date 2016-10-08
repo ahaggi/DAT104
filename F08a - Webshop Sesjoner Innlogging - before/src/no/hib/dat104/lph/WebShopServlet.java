@@ -8,6 +8,7 @@ import static no.hib.dat104.lph.UrlMappings.LOGIN_URL;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -95,6 +96,8 @@ public class WebShopServlet extends HttpServlet {
 		if (sesion!= null && request.getParameterValues("varer") != null) { 
 			//legg merke til at vi måtte teste om sesjonen != null
 			//itilfellet sesjonen er lik null, vil req bli sendt til WEBSHOP_URL som vil sender den videre til LOGIN_URL
+
+//            Map<String, String[]> params = request.getParameterMap();  // OBS et map med alle parameters,, Hver parameter vil ha tabell med mulige values
 
 			Cart cart = (Cart) sesion.getAttribute("cart"); //ikke lage en ny cart
 			String[] items= request.getParameterValues("varer");

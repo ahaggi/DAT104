@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HOME</title>
+</head>
+<body>
+	<p>
+		Fest på festplassen 24-12-24!!! <br> Meld deg på nå!!
+	</p>
+		
+	<form action="paamelding" method ="get">
+		<p><input type="submit" value="Påmelding"></p>
+	</form>
+	
+	<p>Eller login hvis du er allerede påmeldt.</p>
+	
+	
+	<form action="logginn" method ="get">
+	<p><input type="submit" value="Login"></p>
+	</form>
+	
+</body>
+</html>

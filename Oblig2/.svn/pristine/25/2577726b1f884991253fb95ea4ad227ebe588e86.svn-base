@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="paamelding" method="post">
+  <fieldset>
+    <legend>Personlige data</legend>
+    
+    <p>Fornavn: <input type="text" name="fornavn" value="${ps.fornavn}" />    <font color="red">${ps.fornavnFeilmelding}</font></p>
+    <p>Etternavn: <input type="text" name="etternavn"  value="${ps.etternavn}" />    <font color="red">${ps.etternavnFeilmelding}</font></p>
+    <p>Mobil (8 siffer): <input type="text" name="mobil"  value="${ps.mobil}" />    <font color="red">${ps.mobilFeilmelding}</font></p>
+    <p>Kjønn: <input type="radio" name="kjonn" value="mann" checked="checked" />mann
+        <input type="radio" name="kjonn" value="kvinne" />kvinne</p>
+        
+    <p><input type="submit" value="Meld meg på" /></p>
+  </fieldset>
+	
+</form>
+
+</body>
+</html>

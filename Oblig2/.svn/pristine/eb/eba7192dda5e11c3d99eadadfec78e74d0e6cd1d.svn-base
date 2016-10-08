@@ -1,0 +1,16 @@
+package modell;
+
+
+public abstract class UrlMappings {
+    
+    public static final String LOGGINN_DELTAGERE_SERVLET = "logginn";
+    public static final String LOGGINN_DELTAGERE_JSP = "WEB-INF/logginn.jsp";
+    public static final String LOGGINN_KASSERER_SERVLET = "logginnKasserer";
+    public static final String LOGGINN_KASSERER_JSP = "WEB-INF/logginnKasserer.jsp";
+    public static final String PAAMELDING_SERVLET = "paamelding";
+    public static final String PAAMELDINGS_JSP = "WEB-INF/pamelding.html";
+    public static final String PAAMELDINGS_BEKREFTELSE_JSP = "WEB-INF/pameldingsbekreftelse.jsp";
+    public static final String DELTAGERLISTEN_SERVLET = "deltagerliste";
+    public static final String DELTAGELISTEN_JSP = "WEB-INF/deltagerliste.jsp";
+    public static final String FERDIG = "ferdig.html";
+}

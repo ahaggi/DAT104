@@ -1,0 +1,61 @@
+/*
+* This is LoginServlet
+* This takes a mobil objekt, sjekker om den er i db, of hvis den er i database sjekker om den har ett passord tilknyttet.
+* Hvis det er ett passord, så spørre han om det og.
+*/
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringEscapeUtils; //Må fortsatt importere JAR fil.
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+    public LoginServlet() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String mobil = request.getParameter("mobil");
+      	mobil = StringEscapeUtils.escapeHtml4(mobil);
+        
+   
+       //Method for:
+       //If mobil nummer finnes i db.
+       // JA: Sjekk om passord Finns. hvis det, spør om det, hvis ikke, login.
+       // Nei: Redirect til påmelding.
+       
+       //If logged in with passord, direct to Liste2.
+       //If logged in without passord, direct to Liste1.
+       
+        	
+        
+        response.setContentType("text/html; charset=ISO-8859-1");
+
+        PrintWriter out = response.getWriter();
+
+		
+
+     
+        
+    }
+	}

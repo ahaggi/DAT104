@@ -1,0 +1,65 @@
+package test;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import modell.PersonSkjema;
+
+
+ 
+public class TestKlasse {
+	PersonSkjema ps;
+	String fornavn="Fornavn";
+	String etternavn="Etternavn";
+	String mobil="11111111";
+	String kjonn="mann";
+
+	String fornavnFeilmelding="";
+	String etternavnFeilmelding="";
+	String mobilFeilmelding="";
+	String kjonnFeilmelding="";
+
+	
+    @Before
+	public final void setup() throws Exception {
+    	ps = new PersonSkjema();
+    	ps.setFornavn(fornavn);
+    	ps.setEtternavn(etternavn);
+    	ps.setMobil(mobil);
+    	ps.setKjonn(kjonn);
+    	ps.setRegisterertFrafoer(false);
+
+    }
+
+	
+	@Test
+	public void testAllInputGyldig() {
+		assertEquals(ps.erAllInputGyldig(), true);
+	}
+	@Test
+	public void testIsValidFornavn() {
+		ps.setFornavn("A");
+		assertEquals(ps.isValidForNavn("A"), false);
+		assertEquals(ps.isValidForNavn("Aaa"), true);
+		assertEquals(ps.isValidForNavn("A aa"), true);
+	}
+
+	@Test
+	public void testisValidEtterNavn() {
+		assertEquals(ps.isValidEtterNavn("A a"), false);
+		assertEquals(ps.isValidEtterNavn("A_a"), true);
+	}
+
+	@Test
+	public void testisValidMobil() {
+		assertEquals(ps.isValidMobil("1234567"), false);
+		assertEquals(ps.isValidMobil("12345678"), true);
+		assertEquals(ps.isValidMobil("12345678a"), false);
+		assertEquals(ps.isValidMobil("12345 67"), false);
+		assertEquals(ps.isValidMobil("1234567 "), false);
+
+	}
+}

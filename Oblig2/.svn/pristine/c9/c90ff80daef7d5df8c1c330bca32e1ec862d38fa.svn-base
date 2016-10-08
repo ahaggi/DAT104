@@ -1,0 +1,69 @@
+package no.hib.dat104;
+
+public class Personer {
+
+	
+	/*
+	 * Med kjonn, mann = true, kvinne = false
+	 * Med betalingStatus, betalt = True.
+	 */
+	private String fornavn;
+	private String etternavn;
+	private boolean kjonn;
+	private String telnum;
+	private boolean betalingStatus;
+	
+	Personer(){
+		}
+
+	public Personer(String fornavn, String etternavn, boolean kjonn, String telnum, boolean betalingStatus) {
+		super();
+		this.fornavn = fornavn;
+		this.etternavn = etternavn;
+		this.kjonn = kjonn;
+		this.telnum = telnum;
+		this.betalingStatus = betalingStatus;
+	}
+
+	public String getFornavn() {
+		return fornavn;
+	}
+
+	public void setFornavn(String fornavn) {
+		this.fornavn = fornavn;
+	}
+
+	public String getEtternavn() {
+		return etternavn;
+	}
+
+	public void setEtternavn(String etternavn) {
+		this.etternavn = etternavn;
+	}
+
+	public boolean isKjonn() {
+		return kjonn;
+	}
+
+	public void setKjonn(boolean kjonn) {
+		this.kjonn = kjonn;
+	}
+
+	public String getTelnum() {
+		return telnum;
+	}
+
+	public void setTelnum(String telnum) {
+		this.telnum = telnum;
+	}
+
+	public boolean isBetalingStatus() {
+		return betalingStatus;
+	}
+
+	public void setBetalingStatus(boolean betalingStatus) {
+		this.betalingStatus = betalingStatus;
+	}
+	
+	
+}

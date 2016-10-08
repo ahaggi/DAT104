@@ -44,6 +44,7 @@ public class LoggInnServlet extends HttpServlet {
                 out.println("<p><font color=\"red\">" +"Manglende eller ugyldig brukernavn</font></p>");
 
         	}else if ("102".equals(feilKode)) {
+        		
                 out.println("<p><font color=\"red\">" +"Forespørselen din krever pålogging. " +
                         "(Du kan ha blitt logget ut automatisk)</font></p>");
 
