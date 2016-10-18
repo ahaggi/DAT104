@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,39 +9,41 @@
 </head>
 <body>
 
-<h2>Betalingsoversikt</h2>
-<table border="1">
-<tr bgcolor="#cccccc"><th align="left">Navn</th><th>Mobil</th><th>Betalingsstatus</th></tr>
+	<h2>Betalingsoversikt</h2>
+	<table border="1">
+		<tr bgcolor="#cccccc">
+			<th align="left">Navn</th>
+			<th>Mobil</th>
+			<th>Betalingsstatus</th>
+		</tr>
 
- 
-<c:forEach var="p" items="${personerListe}">
-<tr> 
-<td>${p.fornavn}</td>
-<td>${p.mobil}</td>
 
-<td>
-<c:if test="${not p.betalingStatus}">
+		<c:forEach var="p" items="${personerListe}">
+			<tr>
+				<td>${p.fornavn}</td>
+				<td>${p.mobil}</td>
 
-<form action="betalingsOversikt" method ="post">
-<input type="hidden" name="mobilNr" value="${p.mobil}"/> 
-<input type="submit" value="Registrer betaling" />
-</form>
+				<td><c:if test="${not p.betalingStatus}">
 
-</c:if> 
+						<form action="betalingsOversikt" method="post">
+							<input type="hidden" name="mobilNr" value="${p.mobil}" /> <input
+								type="submit" value="Registrer betaling" />
+						</form>
 
-<c:if test="${ p.betalingStatus}">
+					</c:if> <c:if test="${ p.betalingStatus}">
 Betaling mottatt
-</c:if>
-</td>
+</c:if></td>
 
-</tr>
-</c:forEach>
-
+			</tr>
+		</c:forEach>
 
 
 
-</table>
-<p><a href="loggut">Ferdig</a></p>
+
+	</table>
+	<p>
+		<a href="loggut">Ferdig</a>
+	</p>
 
 
 

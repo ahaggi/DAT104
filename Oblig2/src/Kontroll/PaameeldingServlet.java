@@ -27,6 +27,12 @@ public class PaameeldingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	
+	/**Dere har ikke 100% konsekvent og konsistent bruk av PRG.
+I påmeldingsservleten så redirecter dere tilbake til doGet dersom ugyldig input, mens dere forwarder i doPost til påmeldingbekreftelsen.
+Hele poenget med PRG er at man skal unngå dobbeltposting, og man kan refreshe siden for å prøve å sende form-dataen på nytt igjen, og man kommer tilbake
+til påmeldingssiden med en feilmelding. Dere burde hatt en egen servlet som dere redirecter til som tar seg av påmeldingsbekreftelsen. */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -40,6 +46,7 @@ public class PaameeldingServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("null")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

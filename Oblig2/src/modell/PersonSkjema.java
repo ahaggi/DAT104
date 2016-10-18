@@ -8,7 +8,9 @@ import EAO.EAO;
 
 public class PersonSkjema  {
 
-
+/**Dere har også all validering inne i selve PersonSkjema-klassen, mens denne klassen egentlig ikke burde ha noe annet ansvar enn å faktisk holde på
+data knyttet til Person-skjema. Valideringen burde skjedd i en egen klasse kalt "Validator" eller lignende, og det blir da mye enklere å kjøre tester. 
+*/
 
 	private String fornavn;
 	private String etternavn;

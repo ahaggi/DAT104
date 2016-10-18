@@ -2,9 +2,6 @@ package test;
 
 import static org.junit.Assert.*;
 
-import javax.validation.constraints.AssertTrue;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

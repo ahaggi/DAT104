@@ -7,7 +7,7 @@ public class BmiCalculator4 {
      * BMI mellom 18,5 og 24,9 regnes som normalvekt BMI over 25
      * er definert som overvekt BMI over 30 er definert som
      * helseskadelig overvekt
-     * @param bmi TODO
+     * @param bmi  
      */
     String beregnVektklasse(double bmi) {
         return bmi < 18.5 ? "undervekt"

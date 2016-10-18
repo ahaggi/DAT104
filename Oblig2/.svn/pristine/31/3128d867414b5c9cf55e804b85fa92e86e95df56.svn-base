@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta  http-equiv="Refresh" content="10;url=home.html">
+<meta  http-equiv="Refresh" content="5;url=home.html">
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,10 +13,6 @@
 <p>Du er n&#229 logget ut.</p>
 
 <p>Du kan logg inn på nytt ved &#229 g&#229 <a href="${forrigeSide}">hit</a>.</p>
-<br/>
-<p>Eller du kommer til å bli sendt til home automatisk..</p>
-<%-- //Kunne brukt <c:redirect url="/home.html"/> --%>
-
+<!-- Kunne brukt <c:redirect url="/home.html"/> -->
 </body>
 </html>
-

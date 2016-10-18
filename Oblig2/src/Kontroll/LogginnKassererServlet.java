@@ -28,7 +28,7 @@ public class LogginnKassererServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// TODO hent eventuelle innlogging-feilmelding og sett de i req.setpatameter men ikke lag en ny session
+		// hent eventuelle innlogging-feilmelding og sett de i req.setpatameter men ikke lag en ny session
 		
 		request.getRequestDispatcher(LOGGINN_KASSERER_JSP).forward(request, response);
 		HttpSession session= request.getSession(false);
