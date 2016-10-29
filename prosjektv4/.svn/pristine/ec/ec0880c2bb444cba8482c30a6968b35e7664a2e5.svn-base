@@ -1,0 +1,143 @@
+package model;
+
+import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import model.question.Question;
+
+
+
+@Entity
+@Table(schema="questionnaire_joined", name="survey")
+public class Survey implements SurveyADT {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String name;
+	private String description;
+	private boolean repeatable;
+	private boolean traversable;
+	private boolean published;
+	private long startTime;
+	private long endTime;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="survey", referencedColumnName="id")
+	private ArrayList<Question> questions = new ArrayList<Question>();
+	
+	public Survey() {
+		super();
+	}
+	
+    public Survey(Integer id, String name, String description, boolean repeatable, boolean traversable,	boolean published, long startTime, long endTime) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.repeatable = repeatable;
+		this.traversable = traversable;
+		this.published = published;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+
+
+
+	public void setQuestions(ArrayList<Question> questions) {
+		this.questions = questions;
+	}
+
+
+    public void addQuestion(Question question) {
+    	this.questions.add(question);
+    }
+
+    public void removeQuestion(Question question) {
+    	this.questions.remove(question);
+    }
+
+	public Question findQuestion(Integer id) {
+        Question question;
+        for (Question q : questions) {
+            if (q.getId()==(id)) {
+            	question=q;
+            	return question;
+            }
+        }
+        return null;
+    }
+	
+	public Integer getId() {
+		return id;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isRepeatable() {
+		return repeatable;
+	}
+
+	public void setRepeatable(boolean repeatable) {
+		this.repeatable = repeatable;
+	}
+
+	public boolean isTraversable() {
+		return traversable;
+	}
+
+	public void setTraversable(boolean traversable) {
+		this.traversable = traversable;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+
+	public long getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
+	}
+
+	public long getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(long endTime) {
+		this.endTime = endTime;
+	}
+}

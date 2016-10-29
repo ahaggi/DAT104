@@ -1,0 +1,33 @@
+package model.answer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Interview;
+import model.question.Question;
+
+ 
+public class MultipleChoiceAnswer extends Answer {
+	
+	private List<AnsweredChoices> answeredChoices = new ArrayList<AnsweredChoices>();
+
+	public MultipleChoiceAnswer() {
+		super();
+ 	}
+
+	public MultipleChoiceAnswer(Integer id, Question question, Interview interview) {
+		super(id, question, interview);
+ 	}
+
+	
+	
+	public List<AnsweredChoices> getAnsweredChoices() {
+		return answeredChoices;
+	}
+
+	public void setAnsweredChoices(List<AnsweredChoices> answeredChoices) {
+		this.answeredChoices = answeredChoices;
+	}
+
+	
+}

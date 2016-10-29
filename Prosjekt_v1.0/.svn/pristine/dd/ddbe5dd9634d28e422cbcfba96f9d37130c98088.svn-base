@@ -1,0 +1,88 @@
+package EAO;
+
+
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import model.*;
+
+ 
+
+@Stateless
+public class EAO {
+	
+	@PersistenceContext(name = "PersistenceUnit")
+	private EntityManager em;
+	
+//	<class> model.Interview</class>
+//	<class> model.Lecturer</class>
+//	<class> model.Survey</class>
+
+	/**De essentialle sporringene mot interview tabell*/
+	public void leggTilInterview(Interview i) {
+		em.persist(i)  ; 
+	}
+	
+	public void oppdaterInterview(Interview i) {
+		em.merge(i)  ; 
+	}
+
+	
+	public void slettInterview(Integer id) {
+		em.remove(em.find(Interview.class, id));
+	}
+	
+	public Interview finnInterview(Integer id){
+		return em.find(Interview.class, id);
+	}
+
+	
+	/**De essentialle sporringene mot Lecturer tabell*/
+
+	public void leggTilLecturer(Lecturer l) {
+		em.persist(l)  ; 
+	}
+	
+	public void oppdaterLecturer(Lecturer l) {
+		em.merge(l)  ; 
+	}
+	
+	public void slettLecturer(Integer id) {
+		em.remove(em.find(Lecturer.class, id));
+	}
+	
+	public Lecturer finnLecturer(Integer id){
+		return em.find(Lecturer.class, id);
+	}
+
+	
+	/**De essentialle sporringene mot Survey tabell*/
+	public void leggTilSurvey(Survey s) {
+		em.persist(s)  ; 
+	}
+	
+	public void oppdaterSurvey(Survey s) {
+		em.merge(s)  ; 
+	}
+
+	
+	public void slettSurvey(Integer id) {
+		em.remove(em.find(Survey.class, id));
+	}
+	
+	public Survey finnSurvey(Integer id){
+		return em.find(Survey.class, id);
+	}
+
+	
+	
+
+ 
+ 
+
+
+}

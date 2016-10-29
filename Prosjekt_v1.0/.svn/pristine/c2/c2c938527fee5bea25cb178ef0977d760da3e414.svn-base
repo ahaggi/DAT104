@@ -1,0 +1,5 @@
+package model.answer;
+
+public class TextAnswer extends Answer {
+
+}

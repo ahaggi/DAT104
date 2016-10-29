@@ -1,0 +1,150 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import model.question.Question;
+
+
+
+@Entity
+@Table(schema="questionnaire_joined", name="survey")
+public class Survey implements SurveyADT {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String name;
+	private String description;
+	private boolean repeatable;
+	private boolean traversable;
+	private boolean published;
+	private long length;
+	private long endDate;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="survey", referencedColumnName="id")
+	private List<Question> questions = new ArrayList<Question>();
+	
+	public Survey() {
+		super();
+	}
+	
+    public Survey(String name, String description, boolean repeatable, boolean traversable,	boolean published, long length, long endTime) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.repeatable = repeatable;
+		this.traversable = traversable;
+		this.published = published;
+		this.length = length;
+		this.endDate = endTime;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+
+    public void addQuestion(Question question) {
+    	this.questions.add(question);
+    }
+
+    public void removeQuestion(Question question) {
+    	this.questions.remove(question);
+    }
+
+	public Question getQuestion(int index) {
+		Question question;
+		question = (index < questions.size()) ? questions.get(index) : null;
+		return question;
+
+	}
+
+	public Question findQuestion(Integer id) {
+        Question question;
+        for (Question q : questions) {
+            if (q.getId()==(id)) {
+            	question=q;
+            	return question;
+            }
+        }
+        return null;
+    }
+	
+	public Integer getId() {
+		return id;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isRepeatable() {
+		return repeatable;
+	}
+
+	public void setRepeatable(boolean repeatable) {
+		this.repeatable = repeatable;
+	}
+
+	public boolean isTraversable() {
+		return traversable;
+	}
+
+	public void setTraversable(boolean traversable) {
+		this.traversable = traversable;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+
+	public long getLength() {
+		return length;
+	}
+
+	public void setLength(long length) {
+		this.length = length;
+	}
+
+	public long getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(long endDate) {
+		this.endDate = endDate;
+	}
+}

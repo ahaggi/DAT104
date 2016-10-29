@@ -1,0 +1,45 @@
+package model.answer;
+
+import model.*;
+import model.question.*;
+
+public abstract class Answer {
+
+	private Integer id;
+	private Question question;
+	private Interview interview;
+	
+	public Answer() {
+		super();
+ 	}
+	
+	public Answer(Integer id, Question question, Interview interview) {
+		super();
+		this.id = id;
+		this.question = question;
+		this.interview = interview;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Question getQuestion() {
+		return question;
+	}
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+	public Interview getInterview() {
+		return interview;
+	}
+	public void setInterview(Interview interview) {
+		this.interview = interview;
+	}
+
+	
+	 	
+
+}

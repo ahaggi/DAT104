@@ -1,0 +1,79 @@
+package controller;
+
+
+import static utility.UrlMappings.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import EAO.EAO;
+import controller.hjelpeKlasser.GenererSurvey;
+import controller.hjelpeKlasser.PassordUtil;
+import controller.hjelpeKlasser.logInUtil;
+import model.Lecturer;
+import model.LecturerADT;
+import model.Survey;
+
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet("/"+LOGIN_SERVLET)
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	@EJB
+	private EAO EAO;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		PassordUtil passordUtil = new PassordUtil();
+		
+		//TODO escape HTML
+		Lecturer l = EAO.findLecturer(username);
+		Survey survey = GenererSurvey.generer();
+		l.setSurvey(new ArrayList<Survey>());
+		l.addSurvey(survey);
+		EAO.updateLecturer(l);
+		
+		HttpSession session = request.getSession(false);
+
+		if (l != null && passordUtil.sjekkPassord(password, l.getPassword())) {// hvis den har gyldig brukenavn og passord
+
+			logInUtil.logInAs(request, username , l); //username = l.getid
+			session = request.getSession(false);
+			session.removeAttribute("errorMsg");
+ 			
+			response.sendRedirect(DASHBOARD_SERVLET);
+			
+		} else {// hvis brukenavn eller passord ikke fins i databasen
+			
+			//TODO sjekk at db er tilgenglig
+
+			session.setAttribute("errorMsg", "wrong username or password ");// Eller noe fornuftige beskjed
+			response.sendRedirect(LOGIN_SERVLET);
+		}
+	}
+
+}

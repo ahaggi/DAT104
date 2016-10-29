@@ -1,0 +1,60 @@
+package model.question;
+
+import javax.persistence.*;
+
+import model.answer.Answer;
+import model.answer.TextAnswer;
+
+@Entity
+@Table(schema="questionnaire_joined", name="textquestion")
+public class TextQuestion extends Question{
+
+	private Integer minLength;
+	private Integer maxLength;
+	
+	public TextQuestion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public TextQuestion(Integer id, String text, Integer minLength, Integer maxLength) {
+		super(id, text);
+		this.minLength = minLength;
+		this.maxLength = maxLength;
+	}
+	
+	public Integer getMinLength() {
+		return minLength;
+	}
+	public void setMinLength(Integer minLength) {
+		this.minLength = minLength;
+	}
+	public Integer getMaxLength() {
+		return maxLength;
+	}
+	public void setMaxLength(Integer maxLength) {
+		this.maxLength = maxLength;
+	}
+	
+	
+  public void addAnswer(TextAnswer answer) {
+	  super.getAnswers().add(answer);
+}
+
+public void removeAnswer(TextAnswer answer) {
+	super.getAnswers().remove(answer);
+}
+
+public TextAnswer findAnswer(Integer id) {
+	TextAnswer answer;
+    for (Answer a : super.getAnswers()) {
+        if (a.getId()==(id)) {
+        	answer=(TextAnswer) a;
+        	return answer;
+        }
+    }
+    return null;
+}
+
+	
+}

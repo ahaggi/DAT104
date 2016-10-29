@@ -1,0 +1,244 @@
+package EAO;
+
+
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.*;
+
+import model.*;
+
+ 
+
+@Stateless
+public class EAO {
+	
+	@PersistenceContext(name = "PersistenceUnit")
+	private EntityManager em;
+	// TODO Null values as input will throw an unhandled exception. This should be handled here.
+	
+	/*De essentialle sporringene mot interview tabell*/
+	
+	/**
+	 *Makes an Interview object managed and persistent.
+	 * 
+	 * @param Interview i
+	 * @Throws:
+	 *		EntityExistsException - if the entity already exists. (If the entity already exists, the EntityExistsException may be thrown when the persist operation is invoked, or the EntityExistsException or another PersistenceException may be thrown at flush or commit time.)
+	 *		IllegalArgumentException - if the instance is not an entity
+	 *		TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void addInterview(Interview i) {
+		em.persist(i); 
+	}
+	
+	/**
+	 *Updates the managed entity by merging the state of the given
+	 * entity into the current persistence context.
+	 *
+	 *@param:
+	 *	Interview object i
+	 *
+	 *@return
+	 *	the managed instance that the state was merged to
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if instance is not an entity or is a removed entity
+	 *	TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public Interview updateInterview(Interview i) {
+		return em.merge(i); 
+	}
+	
+	/**
+	 *Removes and delete the data of the managed entity instance referenced by the primary key.
+	 * 
+	 * Calls find(Object instance) so it can also throw exceptions from this method.
+	 * 
+	 *@param
+	 *	Integer id
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if the instance is not an entity or is a detached entity
+	 *	TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void deleteInterview(Integer id) {
+		em.remove(findInterview(id));
+	}
+	
+	/**
+	 *Find by primary key. Search for an Interview entity with the specified primary key. 
+	 *If the entity instance is contained in the persistence context, it is returned from there.
+	 *
+	 *@param
+	 *	Integer id
+	 *
+	 *@return
+	 *	the found entity instance or null if the entity does not exist
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if the first argument does not denote an entity type or the second argument is is not a valid type for that entity’s primary key or is null
+	 */
+	public Interview findInterview(Integer id){
+		return em.find(Interview.class, id);
+	}
+
+	/**
+	 * Finds and returns a list of all the answers of one Interview entity (all the answers for one user on one survey) 
+	 * @param Integer interviewId
+	 * @return List of the 
+	 */
+	@SuppressWarnings("unchecked") // TODO @unchecked
+	public List<Integer> visInterviewResultat(Integer interviewId) {
+		String sporring =	"SELECT  (SELECT count(ac.choice) as res"
+				+ "			FROM multiplechoiceanswer mca, answeredchoices ac"
+				+ "			WHERE c.id=ac.choice and mca.id=ac.multiplechoiceanswer  and mca.interview=interviewId"
+				+ "			)"
+				+ "FROM choice c"
+				+ "ORDER BY c.id";
+		Query query =  em.createQuery(sporring).setParameter("interviewId", interviewId);
+		List <Integer> resultal = query.getResultList();
+		return resultal;
+	}
+
+	
+	/*De essentialle sporringene mot Lecturer tabell*/
+	/**
+	 *Makes an Lecturer object managed and persistent.
+	 * 
+	 * @param Lecturer l
+	 * @Throws:
+	 *		EntityExistsException - if the entity already exists. (If the entity already exists, the EntityExistsException may be thrown when the persist operation is invoked, or the EntityExistsException or another PersistenceException may be thrown at flush or commit time.)
+	 *		IllegalArgumentException - if the instance is not an entity
+	 *		TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void addLecturer(Lecturer l) {
+		em.persist(l)  ; 
+	}
+	
+	/**
+	 *Updates the managed entity by merging the state of the given
+	 * entity into the current persistence context.
+	 *
+	 *@param:
+	 *	Lecturer object l
+	 *
+	 *@return
+	 *	the managed instance that the state was merged to
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if instance is not an entity or is a removed entity
+	 *	TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void updateLecturer(Lecturer l) {
+		em.merge(l)  ; 
+	}
+	
+	/**
+	 *Removes and delete the data of the managed entity instance referenced by the primary key.
+	 * 
+	 * Calls find(Object instance) so it can also throw exceptions from this method.
+	 * 
+	 *@param
+	 *	String navn
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if the instance is not an entity or is a detached entity
+	 *	TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void deleteLecturer(String navn) {
+		em.remove(em.find(Lecturer.class, navn));
+	}
+	
+	/**
+	 *Find by primary key. Search for an Lecturer entity with the specified primary key. 
+	 *If the entity instance is contained in the persistence context, it is returned from there.
+	 *
+	 *@param
+	 *	String navn
+	 *
+	 *@return
+	 *	the found entity instance or null if the entity does not exist
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if the first argument does not denote an entity type or the second argument is is not a valid type for that entity’s primary key or is null
+	 */
+	public Lecturer findLecturer(String navn){
+		return em.find(Lecturer.class, navn);
+	}
+
+	
+	/*De essentialle sporringene mot Survey tabell*/
+	
+	/**
+	 *Makes an Survey object managed and persistent.
+	 * 
+	 * @param Survey s
+	 * @Throws:
+	 *		EntityExistsException - if the entity already exists. (If the entity already exists, the EntityExistsException may be thrown when the persist operation is invoked, or the EntityExistsException or another PersistenceException may be thrown at flush or commit time.)
+	 *		IllegalArgumentException - if the instance is not an entity
+	 *		TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void addSurvey(Survey s) {
+		em.persist(s)  ; 
+	}
+	
+	/**
+	 *Updates the managed entity by merging the state of the given
+	 * entity into the current persistence context.
+	 *
+	 *@param:
+	 *	Survey object s
+	 *
+	 *@return
+	 *	the managed instance that the state was merged to
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if instance is not an entity or is a removed entity
+	 *	TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void updateSurvey(Survey s) {
+		em.merge(s)  ; 
+	}
+
+	/**
+	 *Removes and delete the data of the managed entity instance referenced by the primary key.
+	 * 
+	 * Calls find(Object instance) so it can also throw exceptions from this method.
+	 * 
+	 *@param
+	 *	Integer id
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if the instance is not an entity or is a detached entity
+	 *	TransactionRequiredException - if invoked on a container-managed entity manager of type PersistenceContextType.TRANSACTION and there is no transaction
+	 */
+	public void deleteSurvey(Integer id) {
+		em.remove(em.find(Survey.class, id));
+	}
+	
+	/**
+	 *Find by primary key. Search for an Survey entity with the specified primary key. 
+	 *If the entity instance is contained in the persistence context, it is returned from there.
+	 *
+	 *@param
+	 *	Integer id
+	 *
+	 *@return
+	 *	the found entity instance or null if the entity does not exist
+	 *
+	 *@throws
+	 *	IllegalArgumentException - if the first argument does not denote an entity type or the second argument is is not a valid type for that entity’s primary key or is null
+	 */
+	public Survey findSurvey(Integer id){
+		return em.find(Survey.class, id);
+	}
+	
+	/**
+	 * Returns the entity manager object.
+	 * 
+	 * @return the entity manager
+	 */
+	public EntityManager getEntityManager(){
+		return em;
+	}
+}

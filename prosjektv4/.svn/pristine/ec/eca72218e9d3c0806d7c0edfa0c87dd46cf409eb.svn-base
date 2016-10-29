@@ -1,0 +1,70 @@
+package utility;
+
+import javax.servlet.http.HttpServletRequest;
+
+import EAO.EAO;
+
+/**
+ * Authenticator klasse for å snakke sjekke med databasen.
+ * Klasen håndterer login
+ * logut
+ * og om lecturer er innlogget 
+ *
+ */
+public class Authenticator {
+
+	/**
+	 * Loggin a user if the provided details are corret
+	 * 
+	 * @param The HttpServletRequest
+	 * @param Username as String
+	 * @param Password as string
+	 * 
+	 * @returns boolean if the user has been logged in or not.
+	 */
+	public boolean login(HttpServletRequest request, String username, String password){
+		Validator val = new Validator();
+		EAO eao = new EAO();
+		
+		// Prevent HTML and SQL injection attacks
+		// Valider Brukernavn og passord
+		String name = val.isValidUserName(username);
+		String pass = val.isValidPassword(password);
+		if ( name == null || pass == null){
+			// om en får tilbake nullverdi har validering feilet
+			return false;
+		}
+		
+		// Strings should be safe.		
+		
+		// Sjekk om brukeren eksisterer i db
+		eao.findLecturer(name);
+		// Sjekk om passord er riktig
+		
+		// user name and password ok.
+			// Logg in
+		return false;
+	}
+	
+	/**
+	 * Logs out a user
+	 * 
+	 */
+	public void logout(HttpServletRequest request){
+		// TODO implement Autencicator.logout
+		// Invalidate session 
+		// check that session is invalidated
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @return boolean: if the user is loged in or not
+	 */
+	public boolean isAuthenticated(HttpServletRequest request){
+		// TODO implement Validator.isAuthenticated
+		
+		
+		return false;
+	}
+}

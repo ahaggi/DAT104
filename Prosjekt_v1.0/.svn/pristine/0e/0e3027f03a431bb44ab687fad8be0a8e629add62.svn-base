@@ -1,0 +1,81 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.answer.Answer;
+
+public class Interview {
+
+	private Integer id;
+	private String uid;	
+	private Integer survey;
+	private List<Answer> answers = new ArrayList<Answer>();
+
+	public Interview() {
+		super();
+	}
+	
+	public Interview(Integer id, String uid, Integer survey, List<Answer> answers) {
+		super();
+		this.id = id;
+		this.uid = uid;
+		this.survey = survey;
+		this.answers = answers;
+	}
+
+
+	public Interview(Integer surveyID) {
+		this.survey = surveyID;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getSurveyID() {
+		return survey;
+	}
+
+	public void setSurveyID(Integer surveyID) {
+		this.survey = surveyID;
+	}
+
+
+	public String getUid() {
+		return uid;
+	}
+
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+
+	public Integer getSurvey() {
+		return survey;
+	}
+
+
+	public void setSurvey(Integer survey) {
+		this.survey = survey;
+	}
+
+	//TODO add(Answer a)
+	//TODO slett(Answer a)
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
+
+
+	
+}

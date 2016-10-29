@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 /**
  * Servlet implementation class Favorittfrukt
  */
-@WebServlet(name = "/"+FAVORITTFRUKT_SERVLET)
+@WebServlet("/"+FAVORITTFRUKT_SERVLET)
 public class Favorittfrukt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

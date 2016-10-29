@@ -1,0 +1,91 @@
+package model.question;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import model.answer.Answer;
+import model.answer.MultipleChoiceAnswer;
+import model.answer.TextAnswer;
+
+@Entity
+@Table(schema="questionnaire_joined", name="multiplechoicequestion")
+
+public class MultipleChoiceQuestion extends Question{
+	
+	private boolean singleAnswer;
+	
+	@ElementCollection
+	@CollectionTable(name ="multiplechoiceoptions")
+	private List<String> options = new ArrayList<String>();
+
+	public MultipleChoiceQuestion() {
+		super();
+ 	}
+
+	public MultipleChoiceQuestion(Integer id, String text,boolean singleAnswer) {
+		super(id, text);
+		this.singleAnswer = singleAnswer;
+ 	}
+
+	public boolean isSingleAnswer() {
+		return singleAnswer;
+	}
+
+	public void setSingleAnswer(boolean singleAnswer) {
+		this.singleAnswer = singleAnswer;
+	}
+
+	public List<String> getOptions() {
+		return options;
+	}
+
+	public void setOptions(List<String> options) {
+		this.options = options;
+	}
+	
+	  public void addAnswer(MultipleChoiceAnswer answer) {
+		  super.getAnswers().add(answer);
+	}
+
+	public void removeAnswer(MultipleChoiceAnswer answer) {
+		super.getAnswers().remove(answer);
+	}
+
+	public MultipleChoiceAnswer findAnswer(Integer id) {
+		MultipleChoiceAnswer answer;
+	    for (Answer a : super.getAnswers()) {
+	        if (a.getId()==(id)) {
+	        	answer=(MultipleChoiceAnswer) a;
+	        	return answer;
+	        }
+	    }
+	    return null;
+	}
+
+	//TODO Det kan være flere options som har det samme verdi, vi bør sjekke på id
+	  public void addOption(String option) {
+		  options.add(option);
+	}
+
+	public void removeOption(String option) {
+		options.remove(option);
+	}
+
+	public String findOption(String option) {
+		String opt;
+	    for (String o : options) {
+	        if (o.equals(option)) {
+	        	opt= o;
+	        	return opt;
+	        }
+	    }
+	    return null;
+	}
+
+	
+}

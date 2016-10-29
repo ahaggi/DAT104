@@ -1,0 +1,41 @@
+package model.answer;
+
+import model.question.MultipleChoiceOption;
+
+public class AnsweredChoices {
+	private Integer id;
+	private MultipleChoiceAnswer multipleChoiceAnswer;
+	private MultipleChoiceOption multipleChoiceOption;
+	
+	
+	public AnsweredChoices() {
+		super();
+ 	}
+	
+	public AnsweredChoices(Integer id, MultipleChoiceAnswer multipleChoiceAnswer, MultipleChoiceOption multipleChoiceOption) {
+		super();
+		this.id = id;
+		this.multipleChoiceAnswer = multipleChoiceAnswer;
+		this.multipleChoiceOption = multipleChoiceOption;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public MultipleChoiceAnswer getMultipleChoiceAnswer() {
+		return multipleChoiceAnswer;
+	}
+	public void setMultipleChoiceAnswer(MultipleChoiceAnswer multipleChoiceAnswer) {
+		this.multipleChoiceAnswer = multipleChoiceAnswer;
+	}
+	public MultipleChoiceOption getMultipleChoiceOption() {
+		return multipleChoiceOption;
+	}
+	public void setMultipleChoiceOption(MultipleChoiceOption multipleChoiceOption) {
+		this.multipleChoiceOption = multipleChoiceOption;
+	}
+	
+	 
+}

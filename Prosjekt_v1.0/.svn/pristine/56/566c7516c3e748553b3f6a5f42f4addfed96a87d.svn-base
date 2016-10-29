@@ -1,0 +1,112 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.question.Question;
+
+public class Survey {
+
+	
+	private Integer id;
+	private String name;
+	private String description;
+	private boolean repeatable;
+	private boolean traversable;
+	private List<Question> questions = new ArrayList<Question>();
+	private List<Interview> interview = new ArrayList<Interview>();
+	private Lecturer lecturer;
+
+	public Survey() {
+		super();
+	}
+
+
+	public Survey(Integer id, String name, String description, List<Question> questions, List<Interview> interview,
+			boolean repeatable, boolean traversable, Lecturer lecturer_id) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.questions = questions;
+		this.interview = interview;
+		this.repeatable = repeatable;
+		this.traversable = traversable;
+		this.lecturer = lecturer_id;
+	}
+
+
+
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	public List<Interview> getInterview() {
+		return interview;
+	}
+
+	public void setInterview(List<Interview> interview) {
+		this.interview = interview;
+	}
+
+	public boolean isRepeatable() {
+		return repeatable;
+	}
+
+	public void setRepeatable(boolean repeatable) {
+		this.repeatable = repeatable;
+	}
+
+	public Lecturer getLecturer_id() {
+		return lecturer;
+	}
+
+	public void setLecturer_id(Lecturer lecturer_id) {
+		this.lecturer = lecturer_id;
+	}
+
+
+	public boolean isTraversable() {
+		return traversable;
+	}
+
+
+	public void setTraversable(boolean traversable) {
+		this.traversable = traversable;
+	}
+
+
+
+	
+}

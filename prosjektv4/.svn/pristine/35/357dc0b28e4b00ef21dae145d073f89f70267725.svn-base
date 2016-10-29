@@ -1,0 +1,19 @@
+package model;
+
+public interface LecturerADT {
+
+	//	public Integer getId() {
+	//		return id;
+	//	}
+	//	public void setId(Integer id) {
+	//		this.id = id;
+	//	}
+	String getName();
+
+	void setName(String name);
+
+	String getPassword();
+
+	void setPassword(String password);
+
+}

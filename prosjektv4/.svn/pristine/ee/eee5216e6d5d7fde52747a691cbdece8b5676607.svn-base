@@ -1,0 +1,63 @@
+package controller.dashboard;
+
+import static utility.UrlMappings.*;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import controller.hjelpeKlasser.logInUtil;
+import model.Lecturer;
+
+/**
+ * Servlet implementation class Dashboard
+ */
+@WebServlet("/" + DASHBOARD_SERVLET)
+public class Dashboard extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Dashboard() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String interviewHomeUrl = request.getRequestURL().substring(0, request.getRequestURL().length() - DASHBOARD_SERVLET.length()) + INTERVIEW_HOME_SERVLET + "?surveyId=";
+		Lecturer l = (Lecturer) request.getSession().getAttribute("lecturer");
+		/*
+		 * 1: Check if logged in
+		 * 2: if logged in, pjåt opp jsp
+		 * 3: if not, send to login
+		 */
+		
+		
+		if(logInUtil.isLoggedIn(request)){
+			request.getSession().setAttribute("surveys", l.getSurvey());
+			request.getSession().setAttribute("interviewHomeUrl", interviewHomeUrl);
+			request.getRequestDispatcher(DASHBOARD_JSP).forward(request, response);
+		}
+		else{
+			response.sendRedirect(LOGIN_SERVLET);
+		}
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

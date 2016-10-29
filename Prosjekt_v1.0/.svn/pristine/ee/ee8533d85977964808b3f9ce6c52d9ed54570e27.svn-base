@@ -1,0 +1,47 @@
+package model.question;
+
+import model.Survey;
+
+public abstract class Question {
+
+	private Integer id;
+	private String text;
+	private Survey survey;
+	
+	public Question() {
+		super();
+	}
+	
+	public Question(Integer id, String text) {
+		super();
+		this.id = id;
+		this.text = text;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public Survey getSurvey() {
+		return survey;
+	}
+
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
+	}
+
+	
+	
+}

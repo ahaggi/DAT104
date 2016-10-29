@@ -1,0 +1,21 @@
+package utility;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * Authenticator klasse for å snakke sjekke med databasen.
+ * Klasen håndterer login
+ * logut
+ * og om lecturer er innlogget 
+ *
+ */
+public class Authenticator {
+
+	/**
+	 * Logger in en bruker.
+	 * 
+	 */
+	public void login(HttpServletRequest request, String username, String passworn){
+		
+	}
+}

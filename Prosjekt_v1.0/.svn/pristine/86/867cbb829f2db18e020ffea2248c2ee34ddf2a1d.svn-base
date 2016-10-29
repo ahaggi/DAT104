@@ -1,0 +1,43 @@
+package model.question;
+
+import java.awt.Choice;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MultipleChoiceQuestion extends Question{
+	
+	private boolean singleAnswer;
+	private List<Choice> choices = new ArrayList<Choice>();
+	
+	public MultipleChoiceQuestion() {
+		super();
+	}
+
+	public MultipleChoiceQuestion(Integer id, String text, boolean singleAnswer, List<Choice> choices) {
+		super(id, text);
+		this.singleAnswer = singleAnswer;
+		this.choices = choices;
+	}
+
+	public boolean isSingleAnswer() {
+		return singleAnswer;
+	}
+
+	public void setSingleAnswer(boolean singleAnswer) {
+		this.singleAnswer = singleAnswer;
+	}
+
+	public List<Choice> getChoices() {
+		return choices;
+	}
+
+	public void setChoices(List<Choice> choices) {
+		this.choices = choices;
+	}
+
+
+	
+	
+
+}
